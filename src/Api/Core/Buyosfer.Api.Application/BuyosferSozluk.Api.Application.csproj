@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.9.2" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.36.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\BuyosferSozluk.Common\BuyosferSozluk.Common.csproj" />
+    <ProjectReference Include="..\BuyosferSozluk.Api.Domain\BuyosferSozluk.Api.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Commands\EntryComment\CreateVote\" />
+    <Folder Include="Features\Commands\EntryComment\Create\" />
+    <Folder Include="Features\Commands\EntryComment\DeleteFav\" />
+    <Folder Include="Features\Commands\EntryComment\DeleteVote\" />
+    <Folder Include="Features\Queries\" />
+  </ItemGroup>
+
+</Project>
