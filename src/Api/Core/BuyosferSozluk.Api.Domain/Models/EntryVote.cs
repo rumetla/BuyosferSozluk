@@ -1,4 +1,4 @@
-﻿//using BuyosferSozluk.Common.ViewModels;
+﻿using BuyosferSozluk.Common.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ public class EntryVote : BaseEntity
 {
     public Guid EntryId { get; set; }
 
-    //public VoteType VoteType { get; set; }
+    public VoteType VoteType { get; set; }
 
     public Guid CreatedById { get; set; }
 

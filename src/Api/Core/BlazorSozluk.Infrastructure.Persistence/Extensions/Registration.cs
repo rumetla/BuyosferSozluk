@@ -2,7 +2,6 @@
 using BuyosferSozluk.Api.Application.Interfaces.Repositories;
 using BuyosferSozluk.Api.Infrastructure.Persistence.Context;
 //using BuyosferSozluk.Api.Infrastructure.Persistence.Repositories;
-using BuyosferSozluk.Api.Infrastructure.Persistence.Context;
 using BuyosferSozluk.Api.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

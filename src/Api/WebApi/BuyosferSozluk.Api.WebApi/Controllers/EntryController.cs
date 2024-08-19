@@ -1,4 +1,6 @@
-﻿using BuyosferSozluk.Common.Models.RequestModels;
+﻿using BuyosferSozluk.Api.Application.Features.Queries.GetEntries;
+using BuyosferSozluk.Api.Application.Features.Queries.GetMainPageEntries;
+using BuyosferSozluk.Common.Models.RequestModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +11,32 @@ namespace BuyosferSozluk.Api.WebApi.Controllers;
 public class EntryController : BaseController
 {
     private readonly IMediator mediator;
+
+    public EntryController(IMediator mediator)
+    {
+        this.mediator = mediator;
+    }
+
+    [HttpGet]
+
+    public async Task<IActionResult> GetEntries([FromQuery]GetEntriesQuery query)
+    {
+        var entries = await mediator.Send(query);
+
+        return Ok(entries);
+    }
+
+    [HttpGet]
+    [Route("MainPageEntries")]
+
+    public async Task<IActionResult> GetMainPageEntries(int page, int pageSize)
+    {
+        var entries = await mediator.Send(new GetMainPageEntriesQuery(UserId, page, pageSize));
+
+        return Ok(entries);
+    }
+
+
 
     [HttpPost]
     [Route("CreateEntry")]
