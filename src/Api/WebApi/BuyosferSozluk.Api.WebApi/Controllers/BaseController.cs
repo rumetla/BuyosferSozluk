@@ -1,6 +1,13 @@
-﻿namespace BuyosferSozluk.Api.WebApi.Controllers
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+
+namespace BuyosferSozluk.Api.WebApi.Controllers
 {
-    public class BaseController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BaseController : ControllerBase
     {
+        public Guid UserId => new Guid(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
     }
 }
