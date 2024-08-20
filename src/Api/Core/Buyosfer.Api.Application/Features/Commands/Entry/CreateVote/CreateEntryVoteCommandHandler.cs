@@ -21,7 +21,7 @@ public class CreateEntryVoteCommandHandler : IRequestHandler<CreateEntryVoteComm
             obj: new CreateEntryVoteEvent() 
             { 
             EntryId = request.EntryId,
-            CreatedBy = request.Createdby,
+            CreatedBy = request.CreatedBy,
             VoteType = request.VoteType,
             });
         return await Task.FromResult(true);
