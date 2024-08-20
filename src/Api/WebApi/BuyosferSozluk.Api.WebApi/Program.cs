@@ -1,9 +1,8 @@
 using BuyosferSozluk.Api.Application.Extensions;
 using BuyosferSozluk.Api.Infrastructure.Persistence.Extensions;
+using BuyosferSozluk.Api.WebApi.Infrastructure.Extensions;
 using FluentValidation.AspNetCore;
 //using BuyosferSozluk.Api.WebApi.Infrastructure.ActionFilters;
-//using BuyosferSozluk.Api.WebApi.Infrastructure.Extensions;
-//using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +29,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationRegistration();
 builder.Services.AddInfrastructureRegistration(builder.Configuration);
-//builder.Services.ConfigureAuth(builder.Configuration);
+builder.Services.ConfigureAuth(builder.Configuration);
 
 // Add Cors
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
@@ -51,7 +50,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.ConfigureExceptionHandling(app.Environment.IsDevelopment());
+app.ConfigureExceptionHandling(app.Environment.IsDevelopment());
 
 app.UseAuthentication();
 app.UseAuthorization();
