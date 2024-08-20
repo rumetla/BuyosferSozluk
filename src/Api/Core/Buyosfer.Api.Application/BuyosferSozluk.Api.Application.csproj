@@ -20,8 +20,4 @@
     <ProjectReference Include="..\BuyosferSozluk.Api.Domain\BuyosferSozluk.Api.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Queries\SearchBySubject\" />
-  </ItemGroup>
-
 </Project>

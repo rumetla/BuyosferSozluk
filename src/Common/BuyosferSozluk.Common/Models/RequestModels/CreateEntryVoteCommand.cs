@@ -14,5 +14,12 @@ public class CreateEntryVoteCommand: IRequest<bool>
 
     public VoteType VoteType { get; set; }
 
-    public Guid Createdby { get; set; }
+    public Guid CreatedBy { get; set; }
+
+    public CreateEntryVoteCommand(Guid entryId, VoteType voteType, Guid createdBy)
+    {
+        EntryId = entryId;
+        VoteType = voteType;
+        CreatedBy = createdBy;
+    }
 }

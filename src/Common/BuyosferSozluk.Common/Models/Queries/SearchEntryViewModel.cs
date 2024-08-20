@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace BuyosferSozluk.Common.Models.Queries;
 
-namespace BuyosferSozluk.Common.Models.Queries
+public class SearchEntryViewModel
 {
-    internal class SearchEntryViewModel
-    {
-    }
+    public Guid Id { get; set; }
+    public string Subject { get; set; }
 }

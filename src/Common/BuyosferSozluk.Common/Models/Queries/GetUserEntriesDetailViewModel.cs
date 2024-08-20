@@ -4,9 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BuyosferSozluk.Common.Models.Queries
+namespace BuyosferSozluk.Common.Models.Queries;
+
+public class GetUserEntriesDetailViewModel : BaseFooterFavoritedViewModel
 {
-    internal class GetUserEntriesDetailViewModel
-    {
-    }
+    public Guid Id { get; set; }
+    
+    public string Subject { get; set; }
+    
+    public string Content { get; set; }
+    
+    public DateTime CreatedDate { get; set; }
+    
+    public string CreatedByUserName { get; set; }
+
 }
