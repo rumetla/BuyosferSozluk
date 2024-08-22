@@ -35,8 +35,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuyosferSozluk.Projections.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuyosferSozluk.Projections.UserService", "src\Projections\BuyosferSozluk.Projections.User\BuyosferSozluk.Projections.UserService.csproj", "{24412DDE-849A-48E1-A0C1-2B55D3D4899B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuyosferSozluk.Projections.VoteService", "BuyosferSozluk.Projections.VoteService\BuyosferSozluk.Projections.VoteService.csproj", "{D484F9F7-4C4A-4142-B1F2-64209041C29A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuyosferSozluk.WebApp", "src\Clients\BlazorWeb\BuyosferSozluk.WebApp\BuyosferSozluk.WebApp.csproj", "{51F25D20-CC8F-4C71-BC23-A1C378E67D51}"
 EndProject
 Global
@@ -73,10 +71,6 @@ Global
 		{24412DDE-849A-48E1-A0C1-2B55D3D4899B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24412DDE-849A-48E1-A0C1-2B55D3D4899B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24412DDE-849A-48E1-A0C1-2B55D3D4899B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D484F9F7-4C4A-4142-B1F2-64209041C29A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D484F9F7-4C4A-4142-B1F2-64209041C29A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D484F9F7-4C4A-4142-B1F2-64209041C29A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D484F9F7-4C4A-4142-B1F2-64209041C29A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{51F25D20-CC8F-4C71-BC23-A1C378E67D51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{51F25D20-CC8F-4C71-BC23-A1C378E67D51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51F25D20-CC8F-4C71-BC23-A1C378E67D51}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -101,7 +95,6 @@ Global
 		{2DDB1928-57CA-452B-847C-4D8CD0D616E6} = {618D46DC-4E39-4D93-893A-135B8987B0A9}
 		{2CD51ADE-1E00-4258-82D9-169FD5A1A4E9} = {3AA3A765-5399-4784-AFDC-6B91DCCE1052}
 		{24412DDE-849A-48E1-A0C1-2B55D3D4899B} = {3AA3A765-5399-4784-AFDC-6B91DCCE1052}
-		{D484F9F7-4C4A-4142-B1F2-64209041C29A} = {3AA3A765-5399-4784-AFDC-6B91DCCE1052}
 		{51F25D20-CC8F-4C71-BC23-A1C378E67D51} = {2DF420B5-9934-4648-9969-64251E6772EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
