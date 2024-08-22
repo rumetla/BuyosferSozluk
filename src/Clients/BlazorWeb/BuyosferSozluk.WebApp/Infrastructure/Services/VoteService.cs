@@ -1,8 +1,9 @@
 ﻿using BuyosferSozluk.Common.ViewModels;
+using BuyosferSozluk.WebApp.Infrastructure.Services.Interfaces;
 
 namespace BuyosferSozluk.WebApp.Infrastructure.Services;
 
-public class VoteService
+public class VoteService : IVoteService
 {
     private readonly HttpClient client;
 
@@ -50,7 +51,7 @@ public class VoteService
     }
 
 
-    private async Task<HttpResponseMessage> CreateEntryVote(Guid entryId, VoteType voteType  = VoteType.UpVote)
+    private async Task<HttpResponseMessage> CreateEntryVote(Guid entryId, VoteType voteType = VoteType.UpVote)
     {
         var result = await client.PostAsync($"/api/vote/entry/{entryId}?voteType={voteType}", null);
         // TODO Check success code
