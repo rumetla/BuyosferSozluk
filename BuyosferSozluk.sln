@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuyosferSozluk.WebApp", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuyosferSozluk.Projections.VoteService", "src\Projections\BuyosferSozluk.Projections.VoteService\BuyosferSozluk.Projections.VoteService.csproj", "{254224E8-CBBC-49AE-893F-659CCEA358C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuyosferSozluk.Projections.User", "BuyosferSozluk.Projections.User\BuyosferSozluk.Projections.User.csproj", "{B15474E0-88FE-4B49-9C7D-C101EBF9807E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuyosferSozluk.Projections.UserService", "BuyosferSozluk.Projections.UserService\BuyosferSozluk.Projections.UserService.csproj", "{FD658B7F-116F-4B21-A996-51464F2FA4D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,10 +77,10 @@ Global
 		{254224E8-CBBC-49AE-893F-659CCEA358C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{254224E8-CBBC-49AE-893F-659CCEA358C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{254224E8-CBBC-49AE-893F-659CCEA358C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B15474E0-88FE-4B49-9C7D-C101EBF9807E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B15474E0-88FE-4B49-9C7D-C101EBF9807E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B15474E0-88FE-4B49-9C7D-C101EBF9807E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B15474E0-88FE-4B49-9C7D-C101EBF9807E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD658B7F-116F-4B21-A996-51464F2FA4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD658B7F-116F-4B21-A996-51464F2FA4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD658B7F-116F-4B21-A996-51464F2FA4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD658B7F-116F-4B21-A996-51464F2FA4D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,7 +102,7 @@ Global
 		{2CD51ADE-1E00-4258-82D9-169FD5A1A4E9} = {3AA3A765-5399-4784-AFDC-6B91DCCE1052}
 		{51F25D20-CC8F-4C71-BC23-A1C378E67D51} = {2DF420B5-9934-4648-9969-64251E6772EC}
 		{254224E8-CBBC-49AE-893F-659CCEA358C0} = {3AA3A765-5399-4784-AFDC-6B91DCCE1052}
-		{B15474E0-88FE-4B49-9C7D-C101EBF9807E} = {3AA3A765-5399-4784-AFDC-6B91DCCE1052}
+		{FD658B7F-116F-4B21-A996-51464F2FA4D4} = {3AA3A765-5399-4784-AFDC-6B91DCCE1052}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FE248DBC-8F01-4431-A0B8-6D5542FF149A}
