@@ -4,7 +4,9 @@ using BuyosferSozluk.Common.Infrastructure.Exceptions;
 using BuyosferSozluk.Common.Infrastructure.Results;
 using BuyosferSozluk.Common.Models.Queries;
 using BuyosferSozluk.Common.Models.RequestModels;
+using BuyosferSozluk.WebApp.Infrastructure.Auth;
 using BuyosferSozluk.WebApp.Infrastructure.Services.Interfaces;
+using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Json;
 using System.Text.Json;
 
@@ -14,6 +16,7 @@ public class IdentityService : IIdentityService
 {
     private readonly HttpClient httpClient;
     private readonly ISyncLocalStorageService syncLocalStorageService;
+    private readonly AuthenticationStateProvider authenticationStateProvider;
 
 
     public IdentityService(HttpClient httpClient, ISyncLocalStorageService syncLocalStorageService)
@@ -68,8 +71,7 @@ public class IdentityService : IIdentityService
             syncLocalStorageService.SetUsername(response.UserName);
             syncLocalStorageService.SetUserId(response.Id);
 
-            //TODO Check after auth
-            //((AuthStateProvider)authStateProvider).NotifyUserLogin(response.UserName, response.Id);
+            ((AuthStateProvider)authenticationStateProvider).NotifyUserLogin(response.UserName, response.Id);
 
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", response.UserName);
 
@@ -85,8 +87,7 @@ public class IdentityService : IIdentityService
         syncLocalStorageService.RemoveItem(LocalStorageExtension.UserName);
         syncLocalStorageService.RemoveItem(LocalStorageExtension.UserId);
 
-        // TODO Check after auth
-        //((AuthStateProvider)authStateProvider).NotifyUserLogout();
+        ((AuthStateProvider)authenticationStateProvider).NotifyUserLogout();
         httpClient.DefaultRequestHeaders.Authorization = null;
     }
 }
