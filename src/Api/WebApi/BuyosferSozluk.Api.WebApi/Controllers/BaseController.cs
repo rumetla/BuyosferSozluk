@@ -8,6 +8,14 @@ namespace BuyosferSozluk.Api.WebApi.Controllers
     [ApiController]
     public class BaseController : ControllerBase
     {
-        public Guid? UserId => new(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        public Guid? UserId
+        {
+            get
+            {
+                var str = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                return string.IsNullOrEmpty(str) ? Guid.Empty : new Guid(str);
+
+            }
+        }
     }
 }
