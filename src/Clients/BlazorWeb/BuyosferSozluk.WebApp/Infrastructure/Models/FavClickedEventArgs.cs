@@ -1,4 +1,4 @@
-﻿namespace BuyosferSozluk.Api.WebApi.Infrastructure.Models;
+﻿namespace BuyosferSozluk.WebApp.Infrastructure.Models;
 
 public class FavClickedEventArgs: EventArgs
 {
