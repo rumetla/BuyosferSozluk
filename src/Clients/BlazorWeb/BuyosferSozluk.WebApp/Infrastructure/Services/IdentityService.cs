@@ -14,15 +14,21 @@ namespace BuyosferSozluk.WebApp.Infrastructure.Services;
 
 public class IdentityService : IIdentityService
 {
-    private readonly HttpClient httpClient;
+    private JsonSerializerOptions defaultJsonOpt => new JsonSerializerOptions()
+	{
+		PropertyNameCaseInsensitive = true
+	};
+
+	private readonly HttpClient httpClient;
     private readonly ISyncLocalStorageService syncLocalStorageService;
     private readonly AuthenticationStateProvider authenticationStateProvider;
 
 
-    public IdentityService(HttpClient httpClient, ISyncLocalStorageService syncLocalStorageService)
+    public IdentityService(HttpClient httpClient, ISyncLocalStorageService syncLocalStorageService, AuthenticationStateProvider authenticationStateProvider)
     {
         this.httpClient = httpClient;
         this.syncLocalStorageService = syncLocalStorageService;
+        this.authenticationStateProvider = authenticationStateProvider;
     }
 
 

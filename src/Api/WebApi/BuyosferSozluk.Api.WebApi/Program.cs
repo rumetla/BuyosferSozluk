@@ -1,27 +1,24 @@
 using BuyosferSozluk.Api.Application.Extensions;
 using BuyosferSozluk.Api.Infrastructure.Persistence.Extensions;
+using BuyosferSozluk.Api.WebApi.Infrastructure.ActionFilters;
 using BuyosferSozluk.Api.WebApi.Infrastructure.Extensions;
 using FluentValidation.AspNetCore;
-//using BuyosferSozluk.Api.WebApi.Infrastructure.ActionFilters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services
-    .AddControllers()//(opt => opt.Filters.Add<ValidateModelStateFilter>())
-    .AddJsonOptions(opt =>
-    {
-        opt.JsonSerializerOptions.PropertyNamingPolicy = null;
-    })
-    .AddFluentValidation();
-                                  //.AddJsonOptions(opt =>
-                                  //{
-                                  //    opt.JsonSerializerOptions.PropertyNamingPolicy = null;
-                                  //})
-                                  
-                                  //    .ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
+	.AddFluentValidationAutoValidation() // Register auto-validation first
+	.AddFluentValidationClientsideAdapters(); // Register client-side validation
 
+builder.Services
+	.AddControllers(opt => opt.Filters.Add<ValidateModelStateFilter>())
+	.AddJsonOptions(opt =>
+	{
+		opt.JsonSerializerOptions.PropertyNamingPolicy = null;
+	})
+	.ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -34,9 +31,9 @@ builder.Services.ConfigureAuth(builder.Configuration);
 // Add Cors
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {
-    builder.AllowAnyOrigin()
-           .AllowAnyMethod()
-           .AllowAnyHeader();
+	builder.AllowAnyOrigin()
+		   .AllowAnyMethod()
+		   .AllowAnyHeader();
 }));
 
 var app = builder.Build();
@@ -44,8 +41,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

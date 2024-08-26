@@ -6,12 +6,12 @@ using BuyosferSozluk.Api.Application.Features.Queries.GetUserEntries;
 using BuyosferSozluk.Common.Models.Queries;
 using BuyosferSozluk.Common.Models.RequestModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuyosferSozluk.Api.WebApi.Controllers;
 [Route("api/[controller]")]
 [ApiController]
-
 public class EntryController : BaseController
 {
     private readonly IMediator mediator;
@@ -52,8 +52,10 @@ public class EntryController : BaseController
 
     [HttpGet]
     [Route("UserEntries")]
+	[Authorize]
 
-    public async Task<IActionResult> GetUserEntries(string userName, Guid userId, int page, int pageSize)
+
+	public async Task<IActionResult> GetUserEntries(string userName, Guid userId, int page, int pageSize)
     {
         if (userId == Guid.Empty && string.IsNullOrEmpty(userName))
                 userId = UserId.Value;
@@ -78,7 +80,9 @@ public class EntryController : BaseController
 
     [HttpPost]
     [Route("CreateEntry")]
-    public async Task<IActionResult> CreateEntry([FromBody] CreateEntryCommand command)
+	[Authorize]
+
+	public async Task<IActionResult> CreateEntry([FromBody] CreateEntryCommand command)
     {
         if (!command.CreatedById.HasValue)
             command.CreatedById = UserId;
@@ -90,8 +94,8 @@ public class EntryController : BaseController
 
     [HttpPost]
     [Route("CreateEntryComment")]
-
-    public async Task<IActionResult> CreateEntryComment([FromBody] CreateEntryCommentCommand command)
+	[Authorize]
+	public async Task<IActionResult> CreateEntryComment([FromBody] CreateEntryCommentCommand command)
     {
         if (!command.CreatedById.HasValue)
             command.CreatedById = UserId;

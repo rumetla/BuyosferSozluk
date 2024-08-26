@@ -10,8 +10,7 @@ public static class AuthRegistration
     public static IServiceCollection ConfigureAuth(this IServiceCollection services, IConfiguration configuration)
     {
         var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["AuthConfig:Secret"]));
-        //(Encoding.UTF8.GetBytes(configuration["AuthConfig:Secret"]))
-        //(Encoding.ASCII.GetBytes(configuration["AuthConfig::Secret"]))
+
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
