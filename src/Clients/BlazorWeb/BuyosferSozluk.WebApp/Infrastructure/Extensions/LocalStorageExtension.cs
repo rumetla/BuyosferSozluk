@@ -1,6 +1,6 @@
 ﻿using Blazored.LocalStorage;
 
-namespace BuyosferSozluk.Api.WebApi.Infrastructure.Extensions;
+namespace BuyosferSozluk.WebApp.Infrastructure.Extensions;
 
 public static class LocalStorageExtension
 {
