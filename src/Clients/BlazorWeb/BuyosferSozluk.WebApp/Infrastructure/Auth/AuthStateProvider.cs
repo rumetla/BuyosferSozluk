@@ -1,5 +1,5 @@
 ﻿using Blazored.LocalStorage;
-using BuyosferSozluk.Api.WebApi.Infrastructure.Extensions;
+using BuyosferSozluk.WebApp.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

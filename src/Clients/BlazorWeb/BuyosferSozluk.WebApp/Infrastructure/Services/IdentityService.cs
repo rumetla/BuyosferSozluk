@@ -1,10 +1,10 @@
 ﻿using Blazored.LocalStorage;
-using BuyosferSozluk.Api.WebApi.Infrastructure.Extensions;
 using BuyosferSozluk.Common.Infrastructure.Exceptions;
 using BuyosferSozluk.Common.Infrastructure.Results;
 using BuyosferSozluk.Common.Models.Queries;
 using BuyosferSozluk.Common.Models.RequestModels;
 using BuyosferSozluk.WebApp.Infrastructure.Auth;
+using BuyosferSozluk.WebApp.Infrastructure.Extensions;
 using BuyosferSozluk.WebApp.Infrastructure.Services.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Json;

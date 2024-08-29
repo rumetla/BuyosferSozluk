@@ -1,5 +1,5 @@
 ﻿using Blazored.LocalStorage;
-using BuyosferSozluk.Api.WebApi.Infrastructure.Extensions;
+using BuyosferSozluk.WebApp.Infrastructure.Extensions;
 
 namespace BuyosferSozluk.WebApp.Infrastructure.Auth;
 

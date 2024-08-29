@@ -1,9 +1,9 @@
 ﻿@page "/profile/{UserName}"
-@page "/profile/{UserId:guid}"
 @page "/me"
+@using Blazored.LocalStorage
 
 
-<BuyosferSozluk.WebApp.Pages.UserPages.Components.UserProfileDetailComponent UserName="@UserName" UserId="@UserId" />
+<BuyosferSozluk.WebApp.Pages.UserPages.Components.UserProfileDetailComponent UserName="@UserName" />
 <br />
 
 
@@ -33,9 +33,11 @@
     [Parameter]
     public string UserName { get; set; }
 
-    [Parameter]
-    public Guid UserId { get; set; }
+    [Inject]
+    AuthenticationStateProvider authenticationStateProvider { get; set; }
 
+    [Inject]
+    ILocalStorageService localStorageService { get; set; }
 
     private int currentPage = 1;
 
@@ -47,7 +49,17 @@
 
     protected override async Task OnInitializedAsync()
     {
+        if (string.IsNullOrEmpty(UserName))
+        {
+            UserName = await GetCurrentUserName();
+        }
         entries = await entryService.GetProfilePageEntries(currentPage, 20, UserName);
+    }
+
+    private async Task<string> GetCurrentUserName()
+    {
+        // Assuming you have a method to get the current user's UserName
+        return await localStorageService.GetUserName();
     }
 
 }

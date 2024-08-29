@@ -1,21 +1,68 @@
-namespace BuyosferSozluk.Projections.FavoriteService
+using BuyosferSozluk.Common;
+using BuyosferSozluk.Common.Events.Entry;
+using BuyosferSozluk.Common.Events.EntryComment;
+using BuyosferSozluk.Common.Infrastructure;
+
+namespace BuyosferSozluk.Projections.FavoriteService;
+
+public class Worker : BackgroundService
 {
-    public class Worker : BackgroundService
+    private readonly ILogger<Worker> _logger;
+    private readonly IConfiguration configuration;
+
+    public Worker(ILogger<Worker> logger, IConfiguration configuration)
     {
-        private readonly ILogger<Worker> _logger;
+        _logger = logger;
+        this.configuration = configuration;
+    }
 
-        public Worker(ILogger<Worker> logger)
-        {
-            _logger = logger;
-        }
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        var connStr = configuration.GetConnectionString("SqlServer");
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            while (!stoppingToken.IsCancellationRequested)
+        var favService = new Services.FavoriteService(connStr);
+
+        QueueFactory.CreateBasicConsumer()
+            .EnsureExchange(SozlukConstants.FavExchangeName)
+            .EnsureQueue(SozlukConstants.CreateEntryFavQueueName, SozlukConstants.FavExchangeName)
+            .Receive<CreateEntryFavEvent>(fav =>
             {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
-            }
-        }
+                favService.CreateEntryFav(fav).GetAwaiter().GetResult();
+                _logger.LogInformation($"Received EntryId {fav.EntryId}");
+            })
+            .StartConsuming(SozlukConstants.CreateEntryFavQueueName);
+
+        QueueFactory.CreateBasicConsumer()
+            .EnsureExchange(SozlukConstants.FavExchangeName)
+            .EnsureQueue(SozlukConstants.DeleteEntryFavQueueName, SozlukConstants.FavExchangeName)
+            .Receive<DeleteEntryFavEvent>(fav =>
+            {
+                favService.DeleteEntryFav(fav).GetAwaiter().GetResult();
+                _logger.LogInformation($"Deleted Received EntryId {fav.EntryId}");
+            })
+            .StartConsuming(SozlukConstants.DeleteEntryFavQueueName);
+
+
+
+        QueueFactory.CreateBasicConsumer()
+            .EnsureExchange(SozlukConstants.FavExchangeName)
+            .EnsureQueue(SozlukConstants.CreateEntryCommentFavQueueName, SozlukConstants.FavExchangeName)
+            .Receive<CreateEntryCommentFavEvent>(fav =>
+            {
+                favService.CreateEntryCommentFav(fav).GetAwaiter().GetResult();
+                _logger.LogInformation($"Create EntryComment Received EntryCommentId {fav.EntryCommentId}");
+            })
+            .StartConsuming(SozlukConstants.CreateEntryCommentFavQueueName);
+
+
+        QueueFactory.CreateBasicConsumer()
+            .EnsureExchange(SozlukConstants.FavExchangeName)
+            .EnsureQueue(SozlukConstants.DeleteEntryCommentFavQueueName, SozlukConstants.FavExchangeName)
+            .Receive<DeleteEntryCommentFavEvent>(fav =>
+            {
+                favService.DeleteEntryCommentFav(fav).GetAwaiter().GetResult();
+                _logger.LogInformation($"Deleted Received EntryCommentId {fav.EntryCommentId}");
+            })
+            .StartConsuming(SozlukConstants.DeleteEntryCommentFavQueueName);
     }
 }
