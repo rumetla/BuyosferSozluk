@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuyosferSozluk.Api.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(BuyosferSozlukContext))]
-    [Migration("20240806090434_InitMigration")]
+    [Migration("20240829112033_InitMigration")]
     partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.32")
+                .HasAnnotation("ProductVersion", "6.0.33")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -145,6 +145,9 @@ namespace BuyosferSozluk.Api.Infrastructure.Persistence.Migrations
                     b.Property<Guid>("EntryCommentId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("VoteType")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EntryCommentId");
@@ -192,6 +195,9 @@ namespace BuyosferSozluk.Api.Infrastructure.Persistence.Migrations
 
                     b.Property<Guid>("EntryId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("VoteType")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

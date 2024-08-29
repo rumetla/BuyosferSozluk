@@ -35,9 +35,9 @@ public class VoteService : IVoteService
         await CreateEntryVote(entryId, VoteType.UpVote);
     }
 
-    public async Task CreateEntryDownvote(Guid entryCommentId)
+    public async Task CreateEntryDownvote(Guid entryId)
     {
-        await CreateEntryCommentVote(entryCommentId, VoteType.DownVote);
+        await CreateEntryVote(entryId, VoteType.DownVote);
     }
 
     public async Task CreateEntryCommentUpvote(Guid entryCommentId)
@@ -47,7 +47,7 @@ public class VoteService : IVoteService
 
     public async Task CreateEntryCommentDownvote(Guid entryCommentId)
     {
-        await CreateEntryVote(entryCommentId, VoteType.DownVote);
+        await CreateEntryCommentVote(entryCommentId, VoteType.DownVote);
     }
 
 

@@ -135,6 +135,7 @@ namespace BuyosferSozluk.Api.Infrastructure.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EntryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    VoteType = table.Column<int>(type: "int", nullable: false),
                     CreatedById = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -186,6 +187,7 @@ namespace BuyosferSozluk.Api.Infrastructure.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EntryCommentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    VoteType = table.Column<int>(type: "int", nullable: false),
                     CreatedById = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

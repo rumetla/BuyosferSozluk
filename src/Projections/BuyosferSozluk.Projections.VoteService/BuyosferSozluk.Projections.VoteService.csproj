@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\Core\BuyosferSozluk.Api.Domain\BuyosferSozluk.Api.Domain.csproj" />
     <ProjectReference Include="..\..\Common\BuyosferSozluk.Common\BuyosferSozluk.Common.csproj" />
   </ItemGroup>
 </Project>

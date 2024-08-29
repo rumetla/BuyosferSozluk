@@ -1,16 +1,9 @@
-﻿//using BuyosferSozluk.Api.Application.Interfaces.Repositories;
-using BuyosferSozluk.Api.Application.Interfaces.Repositories;
+﻿using BuyosferSozluk.Api.Application.Interfaces.Repositories;
 using BuyosferSozluk.Api.Infrastructure.Persistence.Context;
-//using BuyosferSozluk.Api.Infrastructure.Persistence.Repositories;
 using BuyosferSozluk.Api.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuyosferSozluk.Api.Infrastructure.Persistence.Extensions;
 

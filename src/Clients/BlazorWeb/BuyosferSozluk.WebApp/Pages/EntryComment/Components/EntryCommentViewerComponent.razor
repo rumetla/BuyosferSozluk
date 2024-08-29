@@ -32,6 +32,7 @@
 
     private async Task OnFavClicked(FavClickedEventArgs args)
     {
+
         if (args.IsFaved)
         {
             await favService.CreateEntryCommentFav(args.EntryId.Value);
@@ -46,6 +47,8 @@
         }
 
         StateHasChanged();
+
+        
     }
 
     private async Task OnVoteClicked(VoteClickedEventArgs args)
@@ -54,6 +57,9 @@
         {
             await voteService.DeleteEntryCommentVote(args.EntryId);
             EntryComment.VoteType = VoteType.None;
+
+            StateHasChanged();
+
             return;
         }
 
@@ -61,6 +67,8 @@
         {
             await voteService.CreateEntryCommentUpvote(args.EntryId);
             EntryComment.VoteType = VoteType.UpVote;
+
+            StateHasChanged();
             return;
         }
 
@@ -68,7 +76,11 @@
         {
             await voteService.CreateEntryCommentDownvote(args.EntryId);
             EntryComment.VoteType = VoteType.DownVote;
+
+            StateHasChanged();
             return;
         }
+
+       
     }
 }
