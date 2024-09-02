@@ -26,10 +26,10 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginUs
         this.configuration = configuration;
     }
 
-
     public async Task<LoginUserViewModel> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
         var dbUser = await userRepository.GetSingleAsync(i => i.EmailAddress == request.EmailAddress);
+
         if (dbUser == null)
             throw new DatabaseValidationException("User not found!");
 
@@ -44,17 +44,18 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginUs
 
         var claims = new Claim[]
         {
-            new (ClaimTypes.NameIdentifier, dbUser.Id.ToString()),
-            new (ClaimTypes.Email, dbUser.EmailAddress),
-            new (ClaimTypes.Name, dbUser.UserName),
-            new (ClaimTypes.GivenName, dbUser.FirstName),
-            new (ClaimTypes.Surname, dbUser.LastName)
+            new Claim(ClaimTypes.NameIdentifier, dbUser.Id.ToString()),
+            new Claim(ClaimTypes.Email, dbUser.EmailAddress),
+            new Claim(ClaimTypes.Name, dbUser.UserName),
+            new Claim(ClaimTypes.GivenName, dbUser.FirstName),
+            new Claim(ClaimTypes.Surname, dbUser.LastName)
         };
 
         result.Token = GenerateToken(claims);
 
         return result;
     }
+
     private string GenerateToken(Claim[] claims)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["AuthConfig:Secret"]));

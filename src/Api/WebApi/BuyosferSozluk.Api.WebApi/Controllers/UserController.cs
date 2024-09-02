@@ -1,10 +1,12 @@
 ﻿using BuyosferSozluk.Api.Application.Features.Commands.User.ConfirmEmail;
 using BuyosferSozluk.Api.Application.Features.Queries.GetUserDetail;
 using BuyosferSozluk.Common.Events.User;
+using BuyosferSozluk.Common.Infrastructure.Exceptions;
 using BuyosferSozluk.Common.Models.RequestModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace BuyosferSozluk.Api.WebApi.Controllers;
 [Route("api/[controller]")]
@@ -45,11 +47,23 @@ public class UserController : BaseController
     [Route("Login")]
     [AllowAnonymous]
 
-    public async Task<IActionResult> Login([FromBody]LoginUserCommand command)
+    public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
     {
-        var res = await mediator.Send(command);
-    
-        return Ok(res);
+        try
+        {
+            var res = await mediator.Send(command);
+            return Ok(res);
+        }
+        catch (DatabaseValidationException ex)
+        {
+            // Handle specific validation exception
+            return BadRequest(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            // Handle unexpected exceptions
+            return StatusCode((int)HttpStatusCode.InternalServerError, new { message = "An unexpected error occurred. Please try again later." });
+        }
     }
 
     [HttpPost]

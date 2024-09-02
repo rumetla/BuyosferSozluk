@@ -30,28 +30,29 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Guid>
         var dbEmailAddress = dbUser.EmailAddress;
         var emailChanged = string.CompareOrdinal(dbEmailAddress, request.EmailAddress) != 0;
 
+        var @event = new UserEmailChangedEvent();
+
+        if (emailChanged)
+        {
+            @event.OldEmailAddress = dbEmailAddress;  // Set the OldEmailAddress before mapping
+        }
+
         mapper.Map(request, dbUser);
 
         var rows = await userRepository.UpdateAsync(dbUser);
 
-        //Check if email changed
-
         if (emailChanged && rows > 0)
         {
-            var @event = new UserEmailChangedEvent()
-            {
-                OldEmailAddress = null,
-                NewEmailAddress = dbUser.EmailAddress
-            };
+            @event.NewEmailAddress = dbUser.EmailAddress;
+
             QueueFactory.SendMessageToExchange(exchangeName: SozlukConstants.UserExchangeName,
-                                                exchangeType: SozlukConstants.DefaultExchangeType,
-                                                queueName: SozlukConstants.UserEmailChangedQueueName,
-                                                obj: @event);
+                                               exchangeType: SozlukConstants.DefaultExchangeType,
+                                               queueName: SozlukConstants.UserEmailChangedQueueName,
+                                               obj: @event);
 
             dbUser.EmailConfirmed = false;
             await userRepository.UpdateAsync(dbUser);
         }
-
         return dbUser.Id;
     }
 }
